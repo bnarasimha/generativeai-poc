@@ -170,17 +170,48 @@ User:  Do devlopers have to individually clone repos?
 Agent: 
 """
 
-prompt = """
-Provided below are Questions and Answers on zOS application onboarding to CIO CI CD:
 
-Questions & Answers:{text}
+few_shot_prompt_examples  = """
+Topic:
+timely education session - the speakers seemed knowledgeable about the new world
+Everything
+The Q&A section
+QA
+Clear walk through of how to implement CI/CD pipeline. I really liked to documentation being updated
 
-Based on above information answer the below question:
-Question: Is the Rexx language included in the CI/CD pipeline? How will it be handled?
-Answer:
+Summary:    xyz
+
+
+
+Topic:
+timely education session - the speakers seemed knowledgeable about the new world
+Everything
+The Q&A section
+QA
+Clear walk through of how to implement CI/CD pipeline. I really liked to documentation being updated
+
+Summary:    a
+
+
+
+
+
 """
 
-response = model.generate([text])
+question = f"""Is there an official deadline for migrating all z/OS repositories to the CI/CD pipeline?"""
+
+prompt = """
+Summarize the below responses from participants:.
+
+{few_shot_prompt_examples}
+
+Topic: 
+
+Summary:
+
+"""
+
+response = model.generate([prompt])
 res_sentence = response[0].generated_text
 
 print(res_sentence)

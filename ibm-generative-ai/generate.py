@@ -18,7 +18,6 @@ text = """
 Write a simple poem on coding.
 """
 
-
 response = model.generate([text])
 res_sentence = response[0].generated_text
 

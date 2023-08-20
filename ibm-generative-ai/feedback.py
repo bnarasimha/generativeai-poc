@@ -11,25 +11,33 @@ api_url = os.getenv("GENAI_API", None)
 
 creds = Credentials(api_key,api_endpoint=api_url)
 
-params = GenerateParams(decoding_method="greedy", min_new_tokens=10, max_new_tokens=100)
+params = GenerateParams(decoding_method="greedy", min_new_tokens=10, max_new_tokens=10)
 model = Model("google/flan-ul2", params=params, credentials=creds)
 
 df =  pd.read_csv("../assets/DevAdv_SurveyRsults.csv")
 
-text = df["Overall, how satisfied were you with the event?"]
+column_name = "Overall, how satisfied were you with the event?"
+text = df[column_name]
 
-#print(text)
+text_dict = df[column_name].to_list()
 
-prompt = """
-You role is a data analyst.
+feedbackstr = ""
 
-Below is the list of responses received from participants from a seminar
+for feedback in text_dict:
+    feedbackstr += feedback + "\n"
 
-Responses: ```{text}```, 
- 
-How many are Dissatisfied?"""
+prompt = f"""
+I want you to act as a data scientist.
+
+Below is the dataset of responses received from participants from a seminar:
+
+Responses: {feedbackstr}
+
+Answer the below question from the dataaset:
+How many people responded as Dissatisfied?"""
 
 response = model.generate([prompt])
 res_sentence = response[0].generated_text
 
-print(res_sentence)
+#print(prompt)
+print(response[0].generated_text)

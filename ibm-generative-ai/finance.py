@@ -5,8 +5,8 @@ from genai.model import Model
 from genai.schemas import GenerateParams, ModelType
 
 load_dotenv()
-api_key = os.getenv("GENAI_KEY", None)
-api_url = os.getenv("GENAI_API", None)
+api_key = "530OW4n6xUss3mtaPzCxVpEgVryJegIQx87yNukS9W75"#os.getenv("GENAI_KEY", None)
+api_url = "https://us-south.ml.cloud.ibm.com/ml/v1-beta/generation/text?version=2023-05-29"#os.getenv("GENAI_API", None)
 
 creds = Credentials(api_key, api_endpoint=api_url) # credentials object to access the LLM service
 

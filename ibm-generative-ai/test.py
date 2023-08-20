@@ -11,15 +11,10 @@ api_url = os.getenv("GENAI_API", None)
 creds = Credentials(api_key, api_endpoint=api_url) # credentials object to access the LLM service
 
 # Instantiate parameters for text generation
-params = GenerateParams(decoding_method="greedy", max_new_tokens=50)
+params = GenerateParams(decoding_method="greedy", max_new_tokens=5)
 model = Model("bigcode/starcoder", params=params, credentials=creds)
 
-text = """
-Write a simple poem on coding.
-"""
-
-
-
+text = "Command to list all files including hidden files in a folder in Linux is "
 
 response = model.generate([text])
 res_sentence = response[0].generated_text
