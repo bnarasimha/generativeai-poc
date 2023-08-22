@@ -10,7 +10,7 @@ generate_params = {
 }
 
 creds = {
-        "apikey": "530OW4n6xUss3mtaPzCxVpEgVryJegIQx87yNukS9W75",
+        "apikey": "",
         "url": "https://us-south.ml.cloud.ibm.com"
     }
 
