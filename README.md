@@ -1,1 +1,1 @@
-# POCs on openai, IBM Generative AI, Hugginng Face etc
+# POCs on Openai, IBM Generative AI, Hugginng Face etc
